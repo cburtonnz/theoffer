@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Offer — Art as Offering. New Zealand.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F9F6F0; --warm-white: #FDFBF8; --charcoal: #2C2A26; --mid: #6B6860;
+    --gold: #A8894A; --gold-light: #E8DFC8; --sage: #4A6B5A; --border: rgba(44,42,38,0.12);
+    --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--charcoal); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 60px; }
+  .nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; }
+  .nav-btn { background: none; border: none; font-family: var(--font-body); font-size: 13px; color: var(--mid); cursor: pointer; padding: 8px 16px; border-radius: 4px; transition: all 0.2s; letter-spacing: 0.03em; }
+  .nav-btn:hover { color: var(--charcoal); background: var(--gold-light); }
+  .nav-btn.active { color: var(--charcoal); background: var(--gold-light); font-weight: 500; }
+
+  .page { display: none; }
+  .page.visible { display: block; }
+
+  .hero { min-height: 88vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; pointer-events: none; opacity: 0.06; background-image: repeating-linear-gradient(0deg, var(--charcoal) 0px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, var(--charcoal) 0px, transparent 1px, transparent 60px); }
+  .hero-tag { display: inline-block; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-light); padding: 6px 16px; border-radius: 2px; margin-bottom: 2rem; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; max-width: 900px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { font-size: 17px; font-weight: 300; color: var(--mid); max-width: 560px; margin: 0 auto 3rem; line-height: 1.8; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary { background: var(--charcoal); color: var(--warm-white); border: none; font-family: var(--font-body); font-size: 13px; letter-spacing: 0.06em; padding: 14px 32px; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-outline { background: none; color: var(--charcoal); border: 1px solid var(--border); font-family: var(--font-body); font-size: 13px; letter-spacing: 0.06em; padding: 14px 32px; cursor: pointer; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--charcoal); background: var(--gold-light); }
+  .btn-back { background: none; border: 1px solid var(--border); font-family: var(--font-body); font-size: 12px; padding: 7px 14px; cursor: pointer; color: var(--mid); }
+  .btn-back:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+  .section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section-intro { color: var(--mid); font-size: 16px; font-weight: 300; max-width: 620px; line-height: 1.8; margin-bottom: 3rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 2.5rem; }
+
+  .value-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 4rem; }
+  .value-col { background: var(--warm-white); border: 1px solid var(--border); padding: 2.5rem; }
+  .value-col-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .value-col h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; line-height: 1.25; margin-bottom: 1rem; }
+  .value-col p { font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 1.25rem; }
+  .value-list { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+  .value-list li { font-size: 13px; color: var(--mid); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+  .value-list li:last-child { border-bottom: none; }
+  .value-list li::before { content: '→'; color: var(--gold); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+  .step { padding: 2rem 1.5rem; border: 1px solid var(--border); background: var(--warm-white); }
+  .step-num { font-family: var(--font-display); font-size: 3rem; font-weight: 300; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+  .step h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
+  .step p { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+  .form-wrap { background: var(--warm-white); border: 1px solid var(--border); padding: 3rem; max-width: 680px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+  label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); font-weight: 500; }
+  input, textarea, select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); background: var(--cream); font-family: var(--font-body); font-size: 14px; color: var(--charcoal); outline: none; transition: border-color 0.2s; border-radius: 0; -webkit-appearance: none; }
+  input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 100px; }
+  .form-section-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin: 2rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .upload-area { border: 1.5px dashed var(--gold-light); padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--cream); }
+  .upload-area:hover { border-color: var(--gold); background: var(--warm-white); }
+  .upload-area p { font-size: 13px; color: var(--mid); }
+  .upload-area strong { font-size: 14px; color: var(--charcoal); display: block; margin-bottom: 4px; }
+  .checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin: 1rem 0; }
+  .checkbox-row input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--gold); }
+  .checkbox-row label { font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--mid); font-weight: 400; cursor: pointer; }
+  .checkbox-row label a { color: var(--gold); text-decoration: underline; cursor: pointer; }
+  .form-submit { margin-top: 2rem; width: 100%; background: var(--charcoal); color: var(--warm-white); border: none; font-family: var(--font-body); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px; cursor: pointer; transition: background 0.2s; }
+  .form-submit:hover { background: var(--gold); }
+  .success-msg { display: none; background: var(--sage); color: #fff; padding: 1rem 1.5rem; font-size: 14px; margin-top: 1rem; }
+
+  .tc-wrap { background: var(--warm-white); border: 1px solid var(--border); padding: 3rem; max-width: 760px; }
+  .tc-wrap h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin: 2rem 0 0.75rem; }
+  .tc-wrap h3:first-child { margin-top: 0; }
+  .tc-wrap p { font-size: 14px; color: var(--mid); margin-bottom: 1rem; line-height: 1.8; }
+  .tc-wrap ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+  .tc-wrap li { font-size: 14px; color: var(--mid); margin-bottom: 0.4rem; line-height: 1.7; }
+  .tc-tag { display: inline-block; background: #FFF3E0; color: #8B4A2A; font-size: 11px; padding: 3px 10px; border-radius: 2px; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .filter-btn { background: none; border: 1px solid var(--border); font-family: var(--font-body); font-size: 12px; letter-spacing: 0.05em; padding: 7px 16px; cursor: pointer; transition: all 0.2s; color: var(--mid); }
+  .filter-btn:hover, .filter-btn.active { background: var(--charcoal); color: var(--warm-white); border-color: var(--charcoal); }
+  .catalogue-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .art-card { background: var(--warm-white); border: 1px solid var(--border); cursor: pointer; transition: all 0.25s; overflow: hidden; }
+  .art-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .art-card:hover .art-overlay { opacity: 1; }
+  .art-thumb { width: 100%; aspect-ratio: 4/3; background: var(--gold-light); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .art-placeholder { font-family: var(--font-display); font-size: 3.5rem; color: rgba(168,137,74,0.4); font-weight: 300; font-style: italic; }
+  .art-overlay { position: absolute; inset: 0; background: rgba(44,42,38,0.75); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  .art-overlay-btn { background: var(--warm-white); color: var(--charcoal); border: none; font-family: var(--font-body); font-size: 12px; letter-spacing: 0.06em; padding: 10px 22px; cursor: pointer; }
+  .art-info { padding: 1.25rem; }
+  .art-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; margin-bottom: 3px; }
+  .art-artist { font-size: 12px; color: var(--mid); margin-bottom: 0.75rem; }
+  .art-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 0.75rem; }
+  .art-tag { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--gold-light); color: var(--gold); }
+  .art-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+  .art-price { font-size: 13px; font-weight: 500; }
+  .art-type { font-size: 11px; letter-spacing: 0.05em; background: var(--cream); padding: 3px 9px; color: var(--mid); }
+  .enquire-badge { font-size: 11px; letter-spacing: 0.05em; background: #EDF5F1; padding: 3px 9px; color: var(--sage); }
+
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(44,42,38,0.6); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+  .modal-bg.open { display: flex; }
+  .modal { background: var(--warm-white); max-width: 600px; width: 100%; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto; }
+  .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--mid); line-height: 1; }
+  .modal-close:hover { color: var(--charcoal); }
+  .modal h3 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; }
+  .modal-artist { font-size: 13px; color: var(--mid); margin-bottom: 1.5rem; }
+  .modal-img { width: 100%; aspect-ratio: 16/9; background: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+  .modal-img span { font-family: var(--font-display); font-size: 5rem; color: rgba(168,137,74,0.3); font-style: italic; }
+  .modal-desc { font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 1.5rem; }
+  .modal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .modal-meta-item { background: var(--cream); padding: 1rem; }
+  .modal-meta-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+  .modal-meta-val { font-size: 15px; font-weight: 500; }
+  .modal-actions { display: flex; gap: 1rem; }
+  .modal-btn-primary { flex: 1; background: var(--charcoal); color: var(--warm-white); border: none; font-family: var(--font-body); font-size: 13px; letter-spacing: 0.06em; padding: 13px; cursor: pointer; transition: background 0.2s; }
+  .modal-btn-primary:hover { background: var(--gold); }
+  .modal-btn-secondary { flex: 1; background: none; color: var(--charcoal); border: 1px solid var(--border); font-family: var(--font-body); font-size: 13px; letter-spacing: 0.06em; padding: 13px; cursor: pointer; transition: all 0.2s; }
+  .modal-btn-secondary:hover { border-color: var(--charcoal); background: var(--cream); }
+
+  .option-card { background: var(--warm-white); border: 1px solid var(--border); padding: 2rem 1.75rem; cursor: pointer; transition: all 0.2s; }
+  .option-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .option-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; color: var(--gold-light); line-height: 1; margin-bottom: 0.75rem; }
+  .option-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
+  .option-card p { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 1rem; }
+  .option-price { font-size: 13px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .option-cta { font-size: 12px; color: var(--gold); letter-spacing: 0.04em; }
+  .church-section { display: none; }
+
+  .cost-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .cost-tile { background: var(--warm-white); border: 1px solid var(--border); padding: 1.5rem; }
+  .cost-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .cost-value { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.25rem; }
+  .cost-note { font-size: 12px; color: var(--mid); }
+
+  .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .event-tile { background: var(--warm-white); border: 1px solid var(--border); padding: 1.75rem; }
+  .event-type { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .event-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; }
+  .event-price { font-size: 13px; font-weight: 500; }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 1rem; }
+    .section { padding: 3rem 1.25rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-wrap, .tc-wrap { padding: 1.75rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .value-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">The <span>Offer</span></div>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home" onclick="goPage('home')">Home</button>
+    <button class="nav-btn" id="nav-artists" onclick="goPage('artists')">For Artists</button>
+    <button class="nav-btn" id="nav-churches" onclick="goPage('churches')">For Churches</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="page visible" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag">New Zealand · Art as Offering</div>
+    <h1>Art that opens something<br>in a <em>community.</em></h1>
+    <p>The Offer connects professional artists who are Christian with churches and communities across Aotearoa — building the relationships, and the audience, that serious art deserves.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="goPage('artists')">I'm an Artist</button>
+      <button class="btn-outline" onclick="goPage('churches')">I'm from a Church</button>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">What we offer</div>
+    <h2>Everything made.<br>Freely given.</h2>
+    <p class="section-intro">The Offer is a curated platform and cultural ecosystem — giving artists a professional home where faith and practice are not in conflict, and giving churches the infrastructure and confidence to become genuine patrons of the arts.</p>
+    <div class="value-cols">
+      <div class="value-col">
+        <div class="value-col-label">For Artists</div>
+        <h3>A professional home for work that asks more</h3>
+        <p>The Offer is built for artists who have spent years navigating the tension between a professional art world that makes faith invisible, and a church world that doesn't always have the vocabulary to receive serious work. Here, that tension ends.</p>
+        <ul class="value-list">
+          <li>A curated catalogue that maintains professional standards and curatorial integrity</li>
+          <li>Reach communities across New Zealand that are ready — and being prepared — to receive your work</li>
+          <li>Retain copyright — you stay in control of your work and how it is framed</li>
+          <li>Support with licensing, onboarding, and image preparation</li>
+          <li>A community of artists navigating the same questions of identity and practice</li>
+        </ul>
+        <button class="btn-primary" onclick="goPage('artists')">Submit Your Work</button>
+      </div>
+      <div class="value-col">
+        <div class="value-col-label">For Churches</div>
+        <h3>Building the capacity to become patrons of the arts</h3>
+        <p>The church was once the primary patron of serious art. We're recovering that relationship — one congregation at a time. The Offer curates on your behalf and walks alongside you, so that engaging with contemporary art becomes something your community grows into, not something that feels out of reach.</p>
+        <ul class="value-list">
+          <li>A curated catalogue of serious New Zealand art to explore at your own pace</li>
+          <li>Licensed art files ready for projection and print — a low-threshold first step</li>
+          <li>Original works for hire, with artist notes that open a deeper conversation</li>
+          <li>Commissions made specifically for your community and its story</li>
+          <li>Artist encounters — talks, workshops, and residencies that develop visual literacy</li>
+        </ul>
+        <button class="btn-outline" onclick="goPage('churches')">Browse the Catalogue</button>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:1rem;">Our streams</div>
+    <h2 style="margin-bottom:2rem;">Four ways to begin</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>Digital Downloads</h3><p>Licensed art files for projection, print, and display — with artist notes that invite your congregation to look more closely.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Art for Hire</h3><p>Original works to live in your space for a season — and the beginning of a relationship between your community and an artist.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Community Events</h3><p>Artist-led creative experiences in community venues, sponsored by churches and free to everyone — art as genuine outreach.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Residencies</h3><p>An artist working within your community over time — making work that responds to who you are and where you are.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ARTISTS ═══════════════ -->
+<div class="page" id="page-artists">
+  <div class="section">
+    <div class="section-label">For Artists</div>
+    <h2>The work you've been<br>making deserves this room</h2>
+    <p class="section-intro">The Offer is built for professional artists who are Christian — some of whom have spent years navigating what it costs to hold both identities at once. We're not asking you to choose.</p>
+    <div class="steps" style="margin-bottom:3rem;">
+      <div class="step"><div class="step-num">01</div><h3>Submit Your Work</h3><p>Share your portfolio and artist statement. Every application is reviewed personally — curation matters to us.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>We Onboard You</h3><p>We'll help with image preparation, licensing, and your listing. No technical headaches, no ambiguity about terms.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Your Work Finds Its Audience</h3><p>Churches across Aotearoa browse and engage. You receive payment, and we handle the relationship infrastructure.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>You Stay in Control</h3><p>You set the terms for use. Your copyright, your framing, your practice — protected at every step.</p></div>
+    </div>
+    <hr class="divider" style="margin:0 0 3rem;">
+    <div style="display:flex;margin-bottom:2rem;border-bottom:1px solid var(--border);">
+      <button class="nav-btn active" id="tab-btn-submit" style="border-radius:0;border-bottom:2px solid var(--gold);padding:10px 20px;" onclick="showArtistTab('submit')">Submit Work</button>
+      <button class="nav-btn" id="tab-btn-terms" style="border-radius:0;padding:10px 20px;" onclick="showArtistTab('terms')">Terms &amp; Conditions</button>
+    </div>
+    <div id="tab-submit">
+      <div class="form-wrap">
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--gold-light);">We review all applications personally and respond within 5 working days. Curation is at the heart of what we do — which means we take every submission seriously.</p>
+        <div class="form-row" style="margin-bottom:0;">
+          <div class="form-group"><label>First name</label><input type="text" placeholder="Caroline"></div>
+          <div class="form-group"><label>Last name</label><input type="text" placeholder="Smith"></div>
+        </div>
+        <div class="form-group"><label>Email address</label><input type="email" id="artist-email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Website or portfolio (optional)</label><input type="url" placeholder="https://yoursite.com"></div>
+        <div class="form-group"><label>Primary medium</label>
+          <select><option value="">Select...</option><option>Oil painting</option><option>Watercolour</option><option>Acrylic</option><option>Mixed media</option><option>Photography</option><option>Digital illustration</option><option>Printmaking</option><option>Sculpture / installation</option><option>Other</option></select>
+        </div>
+        <p class="form-section-title">About your practice</p>
+        <div class="form-group"><label>Artist statement</label><textarea placeholder="Tell us about your work — and, if you're willing, how the deepest currents in your practice connect to your faith..."></textarea></div>
+        <div class="form-group"><label>Themes in your work</label><textarea placeholder="e.g. Redemption, lament, creation, justice, transcendence..." style="min-height:70px;"></textarea></div>
+        <div class="form-group"><label>What are you hoping for?</label>
+          <select><option value="">Select...</option><option>Digital downloads only</option><option>Physical hire only</option><option>Both downloads and hire</option><option>Commissions and residencies</option><option>All of the above</option></select>
+        </div>
+        <p class="form-section-title">Submit sample works</p>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1rem;">Upload 2–5 images of your work. High resolution preferred (minimum 2000px on longest edge).</p>
+        <div class="upload-area" onclick="document.getElementById('file-input').click()">
+          <div style="font-size:24px;margin-bottom:0.75rem;color:var(--gold);">↑</div>
+          <strong>Click to upload images</strong>
+          <p>JPG, PNG, TIFF · Max 20MB per file</p>
+        </div>
+        <input type="file" id="file-input" multiple accept="image/*" style="display:none;" onchange="handleFiles(this)">
+        <div id="file-list" style="margin-top:0.75rem;font-size:13px;color:var(--sage);"></div>
+        <div style="margin-top:1.5rem;">
+          <div class="checkbox-row"><input type="checkbox" id="chk-terms"><label for="chk-terms">I have read and agree to <a onclick="showArtistTab('terms')">The Offer's Artist Terms &amp; Conditions</a></label></div>
+          <div class="checkbox-row"><input type="checkbox" id="chk-rights"><label for="chk-rights">I confirm I own full rights to the works I am submitting</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="chk-contact"><label for="chk-contact">I am happy to be contacted by The Offer regarding my submission</label></div>
+        </div>
+        <button class="form-submit" onclick="submitArtist()">Submit Application</button>
+        <div class="success-msg" id="artist-success">Thank you — your submission has been received. We'll be in touch within 5 working days.</div>
+      </div>
+    </div>
+    <div id="tab-terms" style="display:none;">
+      <div class="tc-wrap">
+        <div class="tc-tag">Artist Agreement — Version 1.0 · March 2026</div>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;">Please read these terms carefully before submitting your work to The Offer. By submitting, you agree to be bound by these terms. This agreement should be reviewed by a solicitor before signing any formal contract.</p>
+        <h3>1. About The Offer</h3>
+        <p>The Offer is a New Zealand-based platform that connects artists who are Christian with churches and faith communities. We act as your agent — we curate, list, and facilitate the sale and licensing of your work to church customers. We are not the buyer; we are the intermediary.</p>
+        <h3>2. Your Rights</h3>
+        <p>You retain full copyright and moral rights over all works you submit. Listing your work with The Offer does not transfer ownership. You grant The Offer a non-exclusive licence to display, market, and facilitate the licensing of your works to church customers under the terms you approve.</p>
+        <h3>3. Licensing to Churches</h3>
+        <p>Works are licensed to churches under one of the following use categories:</p>
+        <ul>
+          <li><strong>Digital Display</strong> — projection, screen use within church gatherings</li>
+          <li><strong>Print — Personal</strong> — single non-commercial print for individual use</li>
+          <li><strong>Print — Congregational</strong> — printed materials for church community use</li>
+          <li><strong>Physical Hire</strong> — original work hired for display in a church space for an agreed period</li>
+        </ul>
+        <p>No commercial resale rights are granted. Churches may not sublicense, modify, or use your work for commercial purposes without your written consent.</p>
+        <h3>4. Commission and Payment</h3>
+        <p>The Offer retains a commission on each sale. Commission rates are agreed individually and confirmed in writing before your works are listed. You will receive payment via bank transfer within 20 working days of a completed sale. A minimum payment threshold applies — details provided on onboarding.</p>
+        <h3>5. Your Responsibilities</h3>
+        <ul>
+          <li>You warrant that you own full copyright in all submitted works</li>
+          <li>You warrant that submitting and licensing your works does not infringe any third-party rights</li>
+          <li>You are responsible for providing accurate image files at the resolution specified during onboarding</li>
+          <li>You agree to notify The Offer promptly if any work is sold, licensed, or exhibited elsewhere in a way that may affect its availability</li>
+        </ul>
+        <h3>6. Removing Your Work</h3>
+        <p>You may request removal of any work from the catalogue at any time by contacting us in writing. Removal takes effect within 10 working days. Works already sold or licensed prior to removal remain subject to those licence terms.</p>
+        <h3>7. Conduct and Values</h3>
+        <p>The Offer is a values-aligned platform. We reserve the right to decline or remove works that conflict with our curatorial direction or the platform's mission to serve faith communities. We will always communicate clearly if this arises.</p>
+        <h3>8. Disputes</h3>
+        <p>This agreement is governed by the laws of New Zealand. Any disputes will first be referred to mediation before any formal proceedings.</p>
+        <h3>9. Updates to These Terms</h3>
+        <p>We may update these terms from time to time. We will notify listed artists of any material changes with at least 30 days notice.</p>
+        <div style="margin-top:2rem;padding:1.25rem;border:1px solid var(--gold-light);background:var(--cream);">
+          <p style="font-size:13px;color:var(--mid);"><strong style="color:var(--charcoal);">Note:</strong> These terms are a working draft. Before entering into a formal agreement, both parties are encouraged to seek independent legal advice. The Offer will provide a formal Artist Licensing Agreement for signature prior to any works being listed.</p>
+        </div>
+        <button class="btn-primary" style="margin-top:2rem;width:100%;" onclick="showArtistTab('submit');document.getElementById('chk-terms').checked=true;">I've read the terms — take me to the submission form</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CHURCHES ═══════════════ -->
+<div class="page" id="page-churches">
+  <div class="section">
+    <div class="section-label">For Churches</div>
+    <h2>Art that asks more<br><em>of a congregation</em></h2>
+    <p class="section-intro">The church was once the world's greatest patron of serious art. The Offer is rebuilding that relationship — one community at a time. Start anywhere. We'll walk alongside you from a first download to a commissioned work that belongs to your story.</p>
+
+    <!-- OPTION CARDS -->
+    <div id="church-options" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:3rem;">
+      <div class="option-card" onclick="goChurchSection('download')">
+        <div class="option-num">01</div>
+        <h3>Digital Downloads</h3>
+        <p>A first step. Licensed art files for projection, print, and congregational use — each with artist notes that invite your community to look more closely.</p>
+        <div class="option-price">From NZD $20</div>
+        <div class="option-cta">Browse &amp; purchase →</div>
+      </div>
+      <div class="option-card" onclick="goChurchSection('hire')">
+        <div class="option-num">02</div>
+        <h3>Art for Hire</h3>
+        <p>Original works to live in your space for a season — and the beginning of a relationship between your congregation and a working artist.</p>
+        <div class="option-price">From NZD $60/month</div>
+        <div class="option-cta">Enquire about hire →</div>
+      </div>
+      <div class="option-card" onclick="goChurchSection('commission')">
+        <div class="option-num">03</div>
+        <h3>Commission a Work</h3>
+        <p>Something made for your community, your space, your season. A conversation between your church and an artist — we make it happen.</p>
+        <div class="option-price">From NZD $500</div>
+        <div class="option-cta">Start a conversation →</div>
+      </div>
+      <div class="option-card" onclick="goChurchSection('events')">
+        <div class="option-num">04</div>
+        <h3>Artist Encounters</h3>
+        <p>Workshops, talks, and creative experiences — for your congregation, your leadership, or your wider neighbourhood.</p>
+        <div class="option-price">Packages from NZD $400</div>
+        <div class="option-cta">Explore events →</div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD SECTION -->
+    <div id="church-section-download" class="church-section">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+        <button class="btn-back" onclick="goChurchSection(null)">← Back</button>
+        <div class="section-label" style="margin:0;">Digital Downloads</div>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCat('all',this)">All Works</button>
+        <button class="filter-btn" onclick="filterCat('download',this)">Downloads Only</button>
+        <button class="filter-btn" onclick="filterCat('advent',this)">Advent &amp; Christmas</button>
+        <button class="filter-btn" onclick="filterCat('easter',this)">Easter &amp; Lent</button>
+        <button class="filter-btn" onclick="filterCat('creation',this)">Creation</button>
+      </div>
+      <div class="catalogue-grid" id="catalogue-grid"></div>
+      <div style="margin-top:3rem;background:var(--warm-white);border:1px solid var(--border);padding:2.5rem;max-width:760px;">
+        <div class="tc-tag">Digital Download Licence Terms</div>
+        <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1rem;">Licensing &amp; Permitted Use</h3>
+        <p style="font-size:14px;color:var(--mid);margin-bottom:0.75rem;">Each download comes with artist notes — a short text that opens a door into the work. We encourage you to share these with your congregation rather than letting the image speak alone and unintroduced.</p>
+        <p style="font-size:14px;color:var(--mid);margin-bottom:1.5rem;">By purchasing a digital download from The Offer, you agree to the following terms.</p>
+        <h4 style="font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-bottom:0.5rem;">What you receive</h4>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.25rem;">A non-exclusive, non-transferable licence to use the downloaded image file within your church community for the permitted uses described below. You do not acquire ownership or copyright in the work.</p>
+        <h4 style="font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-bottom:0.5rem;">Permitted uses</h4>
+        <ul style="padding-left:1.25rem;margin-bottom:1.25rem;">
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;"><strong>Digital Display</strong> — projection or screen display during church gatherings, services, and events</li>
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;"><strong>Print — Congregational</strong> — printed in bulletins, newsletters, order of service, or printed materials distributed within your congregation</li>
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;"><strong>Internal Digital Use</strong> — shared via your church's internal digital channels</li>
+        </ul>
+        <h4 style="font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-bottom:0.5rem;">Not permitted</h4>
+        <ul style="padding-left:1.25rem;margin-bottom:1.25rem;">
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;">Resale, sublicensing, or redistribution of the image file to any third party</li>
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;">Use on public social media, public-facing websites, or external publications without purchasing an extended licence</li>
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;">Modification, cropping, or alteration of the artwork without the artist's written consent</li>
+          <li style="font-size:13px;color:var(--mid);margin-bottom:0.4rem;line-height:1.7;">Commercial use of any kind</li>
+        </ul>
+        <h4 style="font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-bottom:0.5rem;">Intellectual property</h4>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.25rem;">All copyright and moral rights in the artwork remain with the artist at all times. You must credit the artist by name wherever the work is displayed or printed, using the format: <em>"[Title], [Artist Name], courtesy of The Offer."</em></p>
+        <div style="padding:1rem;border:1px solid var(--gold-light);background:var(--cream);font-size:13px;color:var(--mid);">By completing your purchase you confirm that you have read and agree to these licence terms.</div>
+      </div>
+    </div>
+
+    <!-- HIRE SECTION -->
+    <div id="church-section-hire" class="church-section">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+        <button class="btn-back" onclick="goChurchSection(null)">← Back</button>
+        <div class="section-label" style="margin:0;">Art for Hire</div>
+      </div>
+
+      <!-- HIRE TYPE TABS -->
+      <div style="display:flex;margin-bottom:2.5rem;border-bottom:1px solid var(--border);">
+        <button class="nav-btn active" id="hire-tab-btn-display" style="border-radius:0;border-bottom:2px solid var(--gold);padding:10px 20px;" onclick="showHireTab('display')">Ongoing Display Hire</button>
+        <button class="nav-btn" id="hire-tab-btn-event" style="border-radius:0;padding:10px 20px;" onclick="showHireTab('event')">One-Off Event Hire</button>
+      </div>
+
+      <!-- DISPLAY HIRE TAB -->
+      <div id="hire-tab-display">
+        <div class="cost-grid">
+          <div class="cost-tile"><div class="cost-label">Delivery &amp; Install</div><div class="cost-value">From $150</div><div class="cost-note">Per delivery, Auckland metro. Regional rates on enquiry.</div></div>
+          <div class="cost-tile"><div class="cost-label">Artwork Hire</div><div class="cost-value">From $60/mo</div><div class="cost-note">Based on ~2% of artwork value per month. Works valued from $1,500–$5,000+.</div></div>
+          <div class="cost-tile"><div class="cost-label">Insurance</div><div class="cost-value">Included</div><div class="cost-note">Transit and display insurance included in all hire agreements at ~1% of artwork value annually, pro-rated to hire period.</div></div>
+          <div class="cost-tile"><div class="cost-label">Minimum Hire</div><div class="cost-value">2 weeks</div><div class="cost-note">Short-term seasonal hire from 2 weeks for Advent, Easter, or special events. Longer-term hire also available.</div></div>
+        </div>
+        <div style="background:var(--warm-white);border:1px solid var(--border);padding:2rem;max-width:680px;margin-bottom:2rem;">
+          <p style="font-size:14px;color:var(--mid);line-height:1.8;">Every hire agreement includes artist notes on the work — a short text written for a non-specialist audience that tells your congregation something true and interesting about what they're looking at. This is what turns a work on a wall into a conversation that develops over a season.</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">All hire agreements include transit insurance and display cover for the duration of the hire period. Insurance is calculated at approximately 1% of the artwork's value annually, pro-rated to your hire period, and is included in your hire invoice — there is nothing separate for you to arrange. The Offer holds the policy on behalf of the artist.</p>
+        </div>
+        <div class="catalogue-grid" id="hire-grid" style="margin-bottom:2.5rem;"></div>
+        <div style="background:var(--warm-white);border:1px solid var(--gold-light);padding:2rem;max-width:680px;">
+          <div class="section-label" style="margin-bottom:0.5rem;">Ready to enquire?</div>
+          <p style="font-size:14px;color:var(--mid);margin-bottom:1.25rem;">Tell us about your space, the occasion, and how long you're thinking. We'll suggest works and send you a quote.</p>
+          <button class="btn-primary" onclick="document.getElementById('art-modal-hire').classList.add('open')">Enquire about display hire</button>
+        </div>
+      </div>
+
+      <!-- EVENT HIRE TAB -->
+      <div id="hire-tab-event" style="display:none;">
+        <div style="max-width:680px;margin-bottom:2.5rem;">
+          <h3 style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:1rem;">Installation &amp; immersive art for your event</h3>
+          <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:1rem;">Some art is made to be experienced, not just seen. The Offer can connect your event with installation artists and immersive art experiences — designed to transform a space and create a moment your community won't forget.</p>
+          <p style="font-size:14px;color:var(--mid);line-height:1.8;">Whether it's a large-scale installation for a conference, a sensory art experience for a retreat, or an immersive environment for a special service, we'll find the right artist and manage the logistics from brief to bump-out.</p>
+        </div>
+
+        <div class="event-grid" style="margin-bottom:2.5rem;">
+          <div class="event-tile">
+            <div class="event-type">Installation Art</div>
+            <div class="event-title">Large-scale works for event spaces</div>
+            <p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">Sculptural and site-specific installations that anchor a space and create visual impact. Available for single-day through to multi-day events.</p>
+            <div class="event-price">From NZD $400 hire + install</div>
+          </div>
+          <div class="event-tile">
+            <div class="event-type">Immersive Environments</div>
+            <div class="event-title">Spaces that invite encounter</div>
+            <p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">Multi-element art environments using light, texture, and object — creating contemplative or experiential spaces within your event or venue.</p>
+            <div class="event-price">From NZD $600 hire + install</div>
+          </div>
+          <div class="event-tile">
+            <div class="event-type">Live Art</div>
+            <div class="event-title">Art made in the room</div>
+            <p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">An artist working live during your event — creating a piece in response to the occasion, which becomes a lasting artefact of the gathering.</p>
+            <div class="event-price">From NZD $500</div>
+          </div>
+          <div class="event-tile">
+            <div class="event-type">Prayer &amp; Reflection Spaces</div>
+            <div class="event-title">Curated contemplative spaces</div>
+            <p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">Thoughtfully designed art environments for prayer, reflection, or lament — for retreats, conferences, or special services.</p>
+            <div class="event-price">From NZD $350</div>
+          </div>
+        </div>
+
+        <div class="form-wrap">
+          <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--gold-light);">Tell us about your event and we'll suggest the right artist and format. We'll be in touch within 3 working days.</p>
+          <div class="form-row" style="margin-bottom:0;">
+            <div class="form-group"><label>Church or organisation</label><input type="text" placeholder="Your church or event name"></div>
+            <div class="form-group"><label>Contact name</label><input type="text" placeholder="Your name"></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@church.org.nz"></div>
+          <div class="form-group"><label>Type of experience</label>
+            <select><option>Installation art</option><option>Immersive environment</option><option>Live art</option><option>Prayer / reflection space</option><option>Not sure — open to ideas</option></select>
+          </div>
+          <div class="form-group"><label>Tell us about your event</label><textarea placeholder="Describe the occasion, venue, expected attendance, and any themes or ideas you have in mind..."></textarea></div>
+          <div class="form-row" style="margin-bottom:0;">
+            <div class="form-group"><label>Event date or timeframe</label><input type="text" placeholder="e.g. 14 June 2025 or mid-July"></div>
+            <div class="form-group"><label>Budget range</label>
+              <select><option>Under $500</option><option>$500 – $1,000</option><option>$1,000 – $3,000</option><option>$3,000+</option><option>Not sure yet</option></select>
+            </div>
+          </div>
+          <button class="form-submit" onclick="submitMsg('event-hire-success')">Send Event Hire Enquiry</button>
+          <div class="success-msg" id="event-hire-success">Thank you — we'll be in touch within 3 working days to discuss your event.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMISSION SECTION -->
+    <div id="church-section-commission" class="church-section">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+        <button class="btn-back" onclick="goChurchSection(null)">← Back</button>
+        <div class="section-label" style="margin:0;">Commission a Work</div>
+      </div>
+      <div style="max-width:680px;margin-bottom:2.5rem;">
+        <h3 style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:1rem;">Something made for your community, by someone who knows it</h3>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:1rem;">A commission is what becomes possible after a relationship has been built. You bring the occasion, the space, the story — and we connect you with the right artist to bring it into being. This is the church as patron, in the fullest sense of the word.</p>
+        <p style="font-size:14px;color:var(--mid);line-height:1.8;">Commissions typically start from NZD $500 for works on paper and prints, through to $3,000–$8,000+ for large-scale original paintings or installations.</p>
+      </div>
+      <div class="form-wrap">
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--gold-light);">Tell us what you have in mind and we'll be in touch within 3 working days.</p>
+        <div class="form-row" style="margin-bottom:0;">
+          <div class="form-group"><label>Church name</label><input type="text" placeholder="Your church"></div>
+          <div class="form-group"><label>Contact name</label><input type="text" placeholder="Your name"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@church.org.nz"></div>
+        <div class="form-group"><label>What occasion or theme?</label><textarea placeholder="e.g. We're entering a season of Advent and would love a large piece for our foyer..."></textarea></div>
+        <div class="form-group"><label>Space or context</label><input type="text" placeholder="e.g. Foyer wall, 3m wide × 2.5m high"></div>
+        <div class="form-group"><label>Budget range</label>
+          <select><option>Under $500</option><option>$500 – $1,500</option><option>$1,500 – $3,000</option><option>$3,000 – $8,000</option><option>$8,000+</option><option>Not sure yet</option></select>
+        </div>
+        <div class="form-group"><label>Timeline</label>
+          <select><option>Within 4 weeks</option><option>1–3 months</option><option>3–6 months</option><option>Flexible</option></select>
+        </div>
+        <button class="form-submit" onclick="submitMsg('commission-success')">Send Commission Enquiry</button>
+        <div class="success-msg" id="commission-success">Thank you — we'll be in touch within 3 working days to discuss your commission.</div>
+      </div>
+    </div>
+
+    <!-- EVENTS SECTION -->
+    <div id="church-section-events" class="church-section">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+        <button class="btn-back" onclick="goChurchSection(null)">← Back</button>
+        <div class="section-label" style="margin:0;">Creative Events</div>
+      </div>
+      <div style="max-width:680px;margin-bottom:2.5rem;">
+        <h3 style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:1rem;">Artists in the room with your community</h3>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:1rem;">The most powerful thing we can do is put an artist and a congregation in the same room. The Offer partners churches with professional artists to run workshops, creative sessions, and community art experiences — in your space or in council venues nearby.</p>
+        <p style="font-size:14px;color:var(--mid);line-height:1.8;">Whether it's an evening where an artist talks about a work your congregation has been living with, a creative session for a small group, or a community art day open to the neighbourhood — we'll find the right artist and manage the logistics.</p>
+      </div>
+      <div class="event-grid">
+        <div class="event-tile"><div class="event-type">Artist Talk</div><div class="event-title">The artist in the room</div><p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">An artist comes to speak about the work your congregation has been living with. One evening, small group, no performance — just a conversation that opens the work up. This is where things change.</p><div class="event-price">From NZD $250</div></div>
+        <div class="event-tile"><div class="event-type">Congregation Workshop</div><div class="event-title">Making together</div><p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">A 2–3 hour creative session facilitated by an artist. Suitable for small groups through to full congregations. No experience required — just willingness to be in the room.</p><div class="event-price">From NZD $400</div></div>
+        <div class="event-tile"><div class="event-type">Community Art Day</div><div class="event-title">Open to your neighbourhood</div><p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">A free public event sponsored by your church, held in a local community venue. Art as genuine outreach. The Offer manages artist fees and logistics.</p><div class="event-price">From NZD $600 sponsorship</div></div>
+        <div class="event-tile"><div class="event-type">Creative Retreat</div><div class="event-title">For leadership teams</div><p style="font-size:13px;color:var(--mid);margin-bottom:0.75rem;line-height:1.7;">A half or full-day creative experience woven into your retreat or leadership day — custom designed around your theme and season.</p><div class="event-price">From NZD $800</div></div>
+      </div>
+      <div class="form-wrap">
+        <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;padding:0.75rem 1rem;border-left:3px solid var(--gold-light);">Tell us what you're imagining — or what you don't yet have words for — and we'll suggest the right format and artist for your community.</p>
+        <div class="form-row" style="margin-bottom:0;">
+          <div class="form-group"><label>Church name</label><input type="text" placeholder="Your church"></div>
+          <div class="form-group"><label>Contact name</label><input type="text" placeholder="Your name"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@church.org.nz"></div>
+        <div class="form-group"><label>What kind of event?</label>
+          <select><option>Artist talk</option><option>Congregation workshop</option><option>Community art day</option><option>Creative retreat</option><option>Not sure yet</option></select>
+        </div>
+        <div class="form-group"><label>Tell us more</label><textarea placeholder="Any themes, occasions, group size, or timing you have in mind..."></textarea></div>
+        <div class="form-group"><label>Approximate group size</label>
+          <select><option>Under 20</option><option>20–50</option><option>50–100</option><option>100+</option><option>Open to the public — not sure</option></select>
+        </div>
+        <button class="form-submit" onclick="submitMsg('events-success')">Send Events Enquiry</button>
+        <div class="success-msg" id="events-success">Thank you — we'll be in touch within 3 working days to discuss your event.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ART DETAIL MODAL -->
+<div class="modal-bg" id="art-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('art-modal')">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- HIRE ENQUIRY MODAL -->
+<div class="modal-bg" id="art-modal-hire">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('art-modal-hire')">✕</button>
+    <h3>Hire Enquiry</h3>
+    <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;">Tell us about your space and occasion and we'll send you a quote.</p>
+    <div class="form-group"><label>Church name</label><input type="text" placeholder="Your church"></div>
+    <div class="form-group"><label>Contact name</label><input type="text" placeholder="Your name"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="you@church.org.nz"></div>
+    <div class="form-group"><label>What are you looking for?</label><textarea placeholder="Describe the space, occasion, themes, or any specific ideas..."></textarea></div>
+    <div class="form-group"><label>Hire period</label>
+      <select><option>2–4 weeks (seasonal)</option><option>1–3 months</option><option>3–6 months</option><option>6 months+</option><option>Not sure yet</option></select>
+    </div>
+    <button class="form-submit" onclick="submitMsg('hire-success')">Send Hire Enquiry</button>
+    <div class="success-msg" id="hire-success">Thank you — we'll be in touch within 3 working days with a quote.</div>
+  </div>
+</div>
+
+<script>
+var artworks = [
+  {id:1,title:"Still Waters",artist:"Hannah Ngata",medium:"Oil on linen",themes:["creation","hope"],type:"download",price:"NZD $35",description:"A meditation on Psalm 23 — deep greens and silver light. Available as a high-resolution digital download licensed for congregational projection and print.",size:"70 × 90 cm",tags:["Psalm 23","Landscape","Lent"],symbol:"~"},
+  {id:2,title:"Advent Light",artist:"James Ferris",medium:"Mixed media",themes:["advent"],type:"download",price:"NZD $25",description:"A layered mixed media piece exploring the anticipation and longing of the Advent season. Rich golds and deep blues. Licensed for digital projection and print use.",size:"A3 digital",tags:["Advent","Christmas","Light"],symbol:"✦"},
+  {id:3,title:"Lament",artist:"Miriam Taufa",medium:"Acrylic on canvas",themes:["easter","lament"],type:"hire",price:"Enquire",description:"A large-scale work exploring grief, silence, and the hope beyond — made for the liminal space of Holy Week. Available for hire for Lent and Easter seasons.",size:"120 × 150 cm",tags:["Easter","Holy Week","Grief"],symbol:"◈"},
+  {id:4,title:"Ngā Mea Katoa",artist:"Aroha Williams",medium:"Printmaking",themes:["creation"],type:"download",price:"NZD $30",description:"A linocut print drawing on Māori concepts of creation and stewardship of the land. Available as a high-resolution digital file for congregational use.",size:"A2 digital",tags:["Creation","Te Ao Māori","Stewardship"],symbol:"❋"},
+  {id:5,title:"The Table",artist:"Daniel Park",medium:"Photography",themes:["communion","hope"],type:"hire",price:"Enquire",description:"A fine art photographic series of 3 pieces exploring the theology of the table — communion, welcome, and belonging. Available as a hire set for your space.",size:"3 × 50×70 cm",tags:["Communion","Welcome","Triptych"],symbol:"□"},
+  {id:6,title:"Ruah",artist:"Sarah Connell",medium:"Watercolour",themes:["creation","advent"],type:"download",price:"NZD $28",description:"Spirit and breath — a watercolour exploring the hovering presence of God over the waters of creation. Soft blues and whites, available for projection and print.",size:"A3 digital",tags:["Creation","Spirit","Genesis"],symbol:"◯"}
+];
+
+function goPage(name) {
+  var pages = document.querySelectorAll('.page');
+  for (var i=0; i<pages.length; i++) pages[i].classList.remove('visible');
+  document.getElementById('page-' + name).classList.add('visible');
+  var btns = document.querySelectorAll('.nav-btn');
+  for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showArtistTab(tab) {
+  document.getElementById('tab-submit').style.display = tab==='submit' ? 'block' : 'none';
+  document.getElementById('tab-terms').style.display = tab==='terms' ? 'block' : 'none';
+  document.getElementById('tab-btn-submit').classList.toggle('active', tab==='submit');
+  document.getElementById('tab-btn-terms').classList.toggle('active', tab==='terms');
+  document.getElementById('tab-btn-submit').style.borderBottom = tab==='submit' ? '2px solid var(--gold)' : 'none';
+  document.getElementById('tab-btn-terms').style.borderBottom = tab==='terms' ? '2px solid var(--gold)' : 'none';
+}
+
+function showHireTab(tab) {
+  document.getElementById('hire-tab-display').style.display = tab==='display' ? 'block' : 'none';
+  document.getElementById('hire-tab-event').style.display = tab==='event' ? 'block' : 'none';
+  document.getElementById('hire-tab-btn-display').classList.toggle('active', tab==='display');
+  document.getElementById('hire-tab-btn-event').classList.toggle('active', tab==='event');
+  document.getElementById('hire-tab-btn-display').style.borderBottom = tab==='display' ? '2px solid var(--gold)' : 'none';
+  document.getElementById('hire-tab-btn-event').style.borderBottom = tab==='event' ? '2px solid var(--gold)' : 'none';
+}
+
+function goChurchSection(name) {
+  document.getElementById('church-options').style.display = name ? 'none' : 'grid';
+  var sections = document.querySelectorAll('.church-section');
+  for (var i=0; i<sections.length; i++) sections[i].style.display = 'none';
+  if (name) {
+    document.getElementById('church-section-' + name).style.display = 'block';
+    if (name==='download') renderGrid('catalogue-grid', artworks);
+    if (name==='hire') renderGrid('hire-grid', artworks.filter(function(a){return a.type==='hire';}));
+  }
+  window.scrollTo(0,0);
+}
+
+function renderGrid(gridId, items) {
+  var grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = items.map(function(a) {
+    return '<div class="art-card" onclick="openArt('+a.id+')">'
+      +'<div class="art-thumb"><div class="art-placeholder">'+a.symbol+'</div>'
+      +'<div class="art-overlay"><button class="art-overlay-btn">View details</button></div></div>'
+      +'<div class="art-info"><div class="art-title">'+a.title+'</div>'
+      +'<div class="art-artist">'+a.artist+' · '+a.medium+'</div>'
+      +'<div class="art-tags">'+a.tags.map(function(t){return '<span class="art-tag">'+t+'</span>';}).join('')+'</div>'
+      +'<div class="art-footer"><span class="art-price">'+a.price+'</span>'
+      +'<span class="'+(a.type==='hire'?'enquire-badge':'art-type')+'">'+(a.type==='hire'?'Hire':'Download')+'</span>'
+      +'</div></div></div>';
+  }).join('');
+}
+
+function filterCat(f, btn) {
+  var btns = document.querySelectorAll('.filter-btn');
+  for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+  btn.classList.add('active');
+  var filtered = f==='all' ? artworks : artworks.filter(function(a){return a.type===f || a.themes.indexOf(f)>-1;});
+  renderGrid('catalogue-grid', filtered);
+}
+
+function openArt(id) {
+  var a = null;
+  for (var i=0; i<artworks.length; i++) { if (artworks[i].id===id) { a=artworks[i]; break; } }
+  if (!a) return;
+  var hireBtn = a.type==='hire'
+    ? '<button class="modal-btn-primary" onclick="closeModal(\'art-modal\');document.getElementById(\'art-modal-hire\').classList.add(\'open\')">Enquire about hire</button>'
+    : '<button class="modal-btn-secondary" style="cursor:default;opacity:0.6;" onclick="return false;">Purchase licence — coming soon</button>';
+  document.getElementById('modal-content').innerHTML =
+    '<h3>'+a.title+'</h3>'
+    +'<div class="modal-artist">'+a.artist+' · '+a.medium+'</div>'
+    +'<div class="modal-img"><span>'+a.symbol+'</span></div>'
+    +'<p class="modal-desc">'+a.description+'</p>'
+    +'<div class="modal-meta">'
+    +'<div class="modal-meta-item"><div class="modal-meta-label">Size</div><div class="modal-meta-val">'+a.size+'</div></div>'
+    +'<div class="modal-meta-item"><div class="modal-meta-label">Availability</div><div class="modal-meta-val">'+(a.type==='hire'?'For Hire':'Digital Download')+'</div></div>'
+    +'<div class="modal-meta-item"><div class="modal-meta-label">Price</div><div class="modal-meta-val">'+a.price+'</div></div>'
+    +'<div class="modal-meta-item"><div class="modal-meta-label">Themes</div><div class="modal-meta-val">'+a.tags.join(', ')+'</div></div>'
+    +'</div>'
+    +'<div class="modal-actions">'+hireBtn
+    +'<button class="modal-btn-secondary" onclick="closeModal(\'art-modal\')">Back to catalogue</button>'
+    +'</div>';
+  document.getElementById('art-modal').classList.add('open');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function submitArtist() {
+  var email = document.getElementById('artist-email').value;
+  var ok = document.getElementById('chk-terms').checked && document.getElementById('chk-rights').checked && document.getElementById('chk-contact').checked;
+  if (!email || !ok) { alert('Please fill in your email address and agree to all terms before submitting.'); return; }
+  document.getElementById('artist-success').style.display = 'block';
+}
+
+function submitMsg(id) { document.getElementById(id).style.display = 'block'; }
+
+function handleFiles(input) {
+  document.getElementById('file-list').innerHTML = Array.prototype.map.call(input.files, function(f){ return '<div>✓ '+f.name+'</div>'; }).join('');
+}
+
+window.onclick = function(e) {
+  if (e.target.classList.contains('modal-bg')) closeModal(e.target.id);
+};
+</script>
+</body>
+</html>
